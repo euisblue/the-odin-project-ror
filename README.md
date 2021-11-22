@@ -1,2 +1,1 @@
-# the-odin-project-ror
-The Odin Project - RoR Course
+# The Odin Project - Ruby on Rails
