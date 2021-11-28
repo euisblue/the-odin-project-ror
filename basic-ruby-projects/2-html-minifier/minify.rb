@@ -1,5 +1,7 @@
-filename = "test.html"
+print "Enter the file name: "
+filename = gets.chomp
 new_filename = "minified_" + filename 
+puts ".. generating [#{new_filename}]"
 file = File.open(filename, 'r')
 file2 = File.open(new_filename, 'w')
 
@@ -10,6 +12,7 @@ while file.eof? != true
   end 
   file2.write str
 end 
+puts ".. DONE"
 
 file.close
 file2.close
