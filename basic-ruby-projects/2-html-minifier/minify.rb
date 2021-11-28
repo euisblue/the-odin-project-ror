@@ -1,18 +1,21 @@
 print "Enter the file name: "
 filename = gets.chomp
-new_filename = "minified_" + filename 
-puts ".. generating [#{new_filename}]"
 file = File.open(filename, 'r')
-file2 = File.open(new_filename, 'w')
+str = ''
 
 while file.eof? != true 
-  str = file.gets.strip.chomp
-  while str.include? "<!--"
-    str = str.slice(0, str.index("<!--")).strip.chomp
+  temp  = file.gets
+  while temp.include? "<!--"
+    temp = temp.slice(0, temp.index("<!--"))
   end 
-  file2.write str
+  str += temp.strip.chomp
 end 
-puts ".. DONE"
 
 file.close
-file2.close
+
+new_filename = "minified_" + filename 
+puts ".. generating [#{new_filename}]"
+
+File.open(new_filename, "w") { |newfile| newfile.write str }
+
+puts ".. DONE"
